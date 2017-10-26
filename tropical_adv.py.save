@@ -1,0 +1,32 @@
+import bs4
+from bs4 import BeautifulSoup
+import requests
+import re
+
+def check_for_adv():
+	result = requests.get("http://www.nhc.noaa.gov/cyclones/?atlc")
+	if result.status_code==200:
+		return result
+	return None
+	#if result.status_code==200:
+
+
+
+if __name__ == "__main__":
+	result = check_for_adv()
+	if result is not None:
+		ta_raw_content = result.content
+		soup = BeautifulSoup(ta_raw_content,'html.parser')
+		cyclone_storm_div = soup.find("div", id="cyclones_stormTable")
+		fas = cyclone_storm_div.select("a > br")
+				for fa in fas:
+		fa_tex = fa.parent.text
+#		print fa_texti
+		isMatch = fas_pattern.match(fa_texti)
+		if isMatch:
+			print fa_texti
+			print fa.parent['href']
+
+		#print cyclone_storm_div
+	else:
+		print "URL Could not be reaced. HTTP STATUS CODE : %d" % result.status_code
