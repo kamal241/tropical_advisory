@@ -89,7 +89,7 @@ if __name__ == "__main__":
 					print "%s created successfully" % adv_raw_file
 					parse_ta(adv_raw_file)
 	else:
-		print "URL Could not be reaced. HTTP STATUS CODE : %d" % result.status_code
+		print "URL Could not be reached. HTTP STATUS CODE : %d" % result.status_code
 
 
 
