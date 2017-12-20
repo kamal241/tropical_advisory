@@ -324,24 +324,24 @@ class JTWCForecastAdvisoryParser():
 						fcsts = forecasts_m.groups()
 						#print fcsts
 						found_section = True
-					lindex = lindex + 1	
+					lindex = lindex + 1
 					if lindex >= total_lines:
-						is_eof = True					
+						is_eof = True
 
 				fvalids = []
 				found_section = False
 				found_all_fvalid = False
-				is_eof = False				
+				is_eof = False
 				while (not found_section) and (not is_eof) and (not found_all_fvalid):
 					fvalid_m = self.__fvalid_re.match(lines[lindex])
 					if fvalid_m is not None:
-						fvi = fvalid_m.groupdict()						
+						fvi = fvalid_m.groupdict()
 						lindex = lindex + 1
 						fvalid_tll_m = self.__fvalid_tll_re.match(lines[lindex])
 						fvalid_tll = fvalid_tll_m.groupdict()
 						lindex = lindex + 1
 						fvalid_max_sstnd_m = self.__max_sstnd_winds_re.match(lines[lindex])
-						fvalid_max_sstnd = fvalid_max_sstnd_m.groupdict()					
+						fvalid_max_sstnd = fvalid_max_sstnd_m.groupdict()
 						fvalid_all = dict(fvi.items() + fvalid_tll.items() + fvalid_max_sstnd.items())
 						fvalido = ForecastValid(fvalid_all)
 						self.fvalid.append(fvalido)
